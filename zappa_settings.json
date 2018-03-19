@@ -1,0 +1,29 @@
+{
+    "dev": {
+        "app_function": "backups.app",
+        "project_name": "dynamo-backups",
+        "s3_bucket": "zappa-dynamo-backups",
+        "role_name": "zappa-dynamo-backups",
+        "manage_roles": false,
+        "cloudwatch_log_level": "DEBUG",
+        // These tasks are not designed to respond to incoming HTTP events,
+        // therefore we don't need the API Gateway nor the keep warm function
+        "apigateway_enabled": false,
+        "keep_warm": false,
+        // These are crons, so, give them the max time to complete
+        "timeout_seconds": 300,
+    },
+    "production": {
+        "extends": "dev",
+        "aws_environment_variables": {
+            "TABLE_PATTERN": ".*", // Regex pattern
+            "BACKUP_RETENTION_IN_DAYS": "7", // Needs to be a string
+        },
+        "events": [
+            {
+                "function": "backups.run",
+                "expression": "rate(1 day)"
+            },
+        ],
+    }
+}
