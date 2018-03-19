@@ -1,5 +1,5 @@
 {
-    "dev": {
+    "base": {
         "app_function": "backups.app",
         "project_name": "dynamo-backups",
         "s3_bucket": "zappa-dynamo-backups",
@@ -14,7 +14,7 @@
         "timeout_seconds": 300,
     },
     "production": {
-        "extends": "dev",
+        "extends": "base",
         "aws_environment_variables": {
             "TABLE_PATTERN": ".*", // Regex pattern
             "BACKUP_RETENTION_IN_DAYS": "7", // Needs to be a string
