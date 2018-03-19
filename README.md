@@ -1,7 +1,7 @@
 
 # Dynamo Backups
 
-Ever "accidentally" deleted a DynamoDB table only to realize that you still needed it? Wouldn't it be nice if you had backups that you restore from? Then this is your answer.
+Ever "accidentally" deleted a DynamoDB table only to realize that you still needed it? Wouldn't it be nice if you had backups that you could restore from? Then this is your answer.
 
 ## Prerequisites:
 
